@@ -1,3 +1,5 @@
+import { ChangePasswordComponent } from './pages/user/change-password/change-password.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 import { HttpModule } from '@angular/http';
 import { CountryService } from './shared/Services/Country.service';
 import { UserService } from './shared/Services/user.service';
@@ -26,6 +28,9 @@ import { UploadFileService } from "./shared/Services/uploadservice/upload-file-s
 import { RegisteruploadComponent } from "./pages/authentication/registration/registerupload/registerupload.component";
 // import { WithBgImageComponent } from "./pages/authentication/login/with-bg-image/with-bg-image.component";
 import { ProductsComponent } from "./pages/products/products.component";
+import { CustomersComponent } from './pages/customers/customers.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +42,11 @@ import { ProductsComponent } from "./pages/products/products.component";
 
     RegisteruploadComponent,
     // WithBgImageComponent,
-    ProductsComponent
+    ProductsComponent,
+    OrdersComponent,
+    ChangePasswordComponent,
+    CustomersComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
