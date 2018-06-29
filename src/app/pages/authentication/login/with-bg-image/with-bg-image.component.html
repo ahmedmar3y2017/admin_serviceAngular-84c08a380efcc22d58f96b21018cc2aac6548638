@@ -22,8 +22,7 @@
               <div class="input-group">
                 <input type="email"  name="Email" class="form-control"  placeholder="Your Email Address" [formControl]="complexForm.controls['email']"
                  [ngClass]="{ 'has-error' : !complexForm.controls['email'].valid && complexForm.controls['email'].touched && complexForm.controls['email'].dirty }"
-
-                >
+                       [(ngModel)]="credential.username">
 
                 <span class="md-line"></span>
               </div>
@@ -42,7 +41,9 @@
               <div class="input-group">
                 <input type="password" class="form-control" placeholder="Password"
                 [formControl]="complexForm.controls['password']"
-                 [ngClass]="{ 'has-error' : !complexForm.controls['password'].valid && complexForm.controls['email'].touched && complexForm.controls['password'].dirty }">
+                 [ngClass]="{ 'has-error' : !complexForm.controls['password'].valid && complexForm.controls['email'].touched && complexForm.controls['password'].dirty }"
+
+                       [(ngModel)]="credential.password">
                 <span class="md-line"></span>
               </div>
 
@@ -92,14 +93,14 @@
                     [ngStyle]="{width:progress.percentage+'%'}">
                     {{progress.percentage}}%</div>
                 </div>
-                 
+
                 <label class="btn btn-default">
                   <input type="file" (change)="selectFile($event)">
                 </label>
-                 
+
                 <button class="btn btn-success" [disabled]="!selectedFiles"
                   (click)="upload()">Upload</button>
-              
+
 
               </div>
             </div>

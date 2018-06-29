@@ -8,6 +8,7 @@ import { RegisterService } from '../../../../shared/Services/register.service';
 import { Admin } from '../../../../shared/Entities/admin';
 import { UploadFileService } from '../../../../shared/Services/uploadservice/upload-file-service.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+
 @Component({
   selector: 'app-with-bg-image',
   templateUrl: './with-bg-image.component.html',
@@ -30,50 +31,90 @@ export class WithBgImageComponent implements OnInit {
 
   complexForm: FormGroup;
 
-  admin: Admin = {
+  //admin: Admin = {
+  //
+  //   id: 0,
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   password: "",
+  //   active: 1,
+  //   phone: "",
+  //   address1: "",
+  //   address2: "",
+  //   city: "",
+  //   state: "",
+  //   country: "",
+  //   postalCode: 0,
+  //   lastActive: new Date(),
+  //   registerDate: new Date(),
+  //   role: "",
+  //   username: "",
+  //   adminLevel: "",
+  //   available: true
+  //
+  // };
 
-    id: 0,
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    active: 1,
-    phone: "",
-    address1: "",
-    address2: "",
-    city: "",
-    state: "",
-    country: "",
-    postalCode: 0,
-    lastActive: new Date(),
-    registerDate: new Date(),
-    role: "",
-    username: "",
-    adminLevel: "",
-    available: true
+  private credential = {'username':'', 'password':''};
 
-  };
-
-  constructor(private uploadService: UploadFileService,
-    private loginService: UserService,
-    private loginRouter: Router,
-    fb: FormBuilder) {
+  constructor(private loginService : UserService , private loginRouter:Router , fb: FormBuilder,private uploadService:UploadFileService) {
 
     this.complexForm = fb.group({
+      //, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
 
-      'email': [null, Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
+      'email' :  [null, Validators.compose([Validators.required])],
 
       'password': [null, Validators.required],
 
-    });
-
-
-
+    })
   }
+
+
+  loggedin:boolean
+
+
 
   ngOnInit() {
+    this.loginService.checkSession().subscribe(
+      res => {
+        this.loggedin=true
+        console.log('++++++++++++++++++++++')
+        this.loginService.SetUserLoggedIn(this.loggedin);
+      },
+      error => {
+        this.loggedin=false
+        console.log('--------------------------')
+
+        this.loginService.SetUserLoggedIn(this.loggedin);
+
+      }
+    );
 
   }
+
+  loginFun(e) {
+    e.preventDefault();
+    this.loginService.sendCredential(this.credential.username, this.credential.password).subscribe(
+      res => {
+        console.log("log");
+        console.log(res);
+        localStorage.setItem("xAuthToken", res.json().token);
+        // this.loggedIn = true;
+        this.loginService.SetUserLoggedIn(true);
+        // this.IsloggedIn = true;
+
+        this.loginRouter.navigate(['dashboard']);
+      },
+      error => {
+        // this.loggedIn = false;
+        // this.loginError = true;
+        this.loginRouter.navigate(['authentication/login']);
+
+
+      }
+    );
+  }
+
 
   // ***************************************************
 
@@ -109,27 +150,9 @@ export class WithBgImageComponent implements OnInit {
   // *******************************************************
 
 
-  loginFun(e) {
-    e.preventDefault();
-    var user = e.target.elements[0].value;
-    var pass = e.target.elements[1].value;
-
-
-    console.log(user + "   " + pass);
-
-
-    this.loginService.checkAdmin(user, pass).subscribe(admin => {
-
-      console.log(user + "   " + pass);
-
-      this.loginService.SetUserLoggedIn();
-      this.loginRouter.navigate(['dashboard']);
-
-
-    });
 
 
 
-  }
+
 
 }

@@ -1,52 +1,79 @@
+import {Http, Headers} from '@angular/http';
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
-import { Headers, Http, RequestOptions, Response, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
 
-import { Admin } from '../Entities/admin';
 @Injectable()
-export class UserService {
-  IsloggedIn: boolean;
-  private _baseUrl = 'http://localhost:8080/rest';
+export class UserService{
+  IsloggedIn :boolean;
 
-  constructor(private _http: Http) {
-    this.IsloggedIn = true;
-  }
-
-  SetUserLoggedIn() {
+// constructor() {
+//   this.IsloggedIn = false;
+//   }
 
 
-    this.IsloggedIn = true;
+  private serverPath:string = 'http://localhost:8080';
 
-  }
-
-  // login function 
-  checkAdmin(email: string, pass: string) {
-
-    let username: string = 'admin';
-    let password: string = 'admin';
-    let headers: Headers = new Headers();
-    headers.append("Authorization", "Basic " + btoa(username + ":" + password));
-    headers.append("Content-Type", "application/json; charset=utf8");
-
-    let cpParams = new URLSearchParams();
-    cpParams.set('email', email);
-    cpParams.set('password', pass);
-
-    const options = new RequestOptions({ headers: headers, params: cpParams });
-    return this._http.get(this._baseUrl + "/admin/login", options)
-      .map((response: Response) => response.json()).do(data => console.log(JSON.stringify(data)));
+  constructor(private http:Http, private router:Router) { }
+  SetUserLoggedIn(isloggedin:boolean){
 
 
+    this.IsloggedIn = isloggedin;
 
   }
 
 
-
-  getUserLogggedIn() {
+  getUserLogggedIn(){
+    console.log("+_+" +this.IsloggedIn);
 
     return this.IsloggedIn;
   }
+
+
+  sendCredential(username: string, password: string) {
+    let url = this.serverPath+'/token';
+    let encodedCredentials = btoa(username+":"+password);
+    let basicHeader = "Basic "+encodedCredentials;
+    let headers = new Headers({
+      'Content-Type' : 'application/x-www-form-urlencoded',
+      'Authorization' : basicHeader
+    });
+    console.log(basicHeader)
+    return this.http.get(url, {headers: headers});
+  }
+//
+
+
+  checkSession() {
+    let url = this.serverPath+'/checkSession';
+    let headers = new Headers({
+      'x-auth-token' : localStorage.getItem('xAuthToken')
+    });
+
+    return this.http.get(url, {headers: headers});
+  }
+
+  logout() {
+    let url = this.serverPath+'/user/logout';
+    let headers = new Headers({
+      'x-auth-token' : localStorage.getItem('xAuthToken')
+    });
+
+    return this.http.post(url, '', {headers: headers});
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

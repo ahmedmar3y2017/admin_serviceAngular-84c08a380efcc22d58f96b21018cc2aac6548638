@@ -9,42 +9,45 @@ import { promise } from 'protractor';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  state: boolean = false;
+  state:boolean = false ;
 
-  constructor(private authService: UserService, private router: Router) {
+
+  constructor (private authService:UserService ,private router :Router,private loginService : UserService ) {
 
   }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean {
 
-    console.log(this.authService.getUserLogggedIn());
+    //console.log(this.authService.getUserLogggedIn());
 
     // debugger;
-    this.state = this.authService.getUserLogggedIn();
-    if (this.state) {
+    // this.state= this.authService.getUserLogggedIn();
+    // if (this.state) {
 
-      return true;
-    } else {
+    //   return  true;
+    // } else {
 
-      this.router.navigate(['authentication/login']);
+    //     this.router.navigate(['authentication/login']);
+
+    this.loginService.checkSession().subscribe(
+      res => {
+        //this.loggedin=true
+        console.log('========================')
+        //  this.loginService.SetUserLoggedIn(this.loggedin);
+        this.state=true;
+        this.router.navigate(['dashboard']);
+
+      },
+      error => {
+        this.state=false;
+        //this.loginService.SetUserLoggedIn(this.loggedin);
+        this.router.navigate(['authentication/login']);
+      }
+    );
+
+    console.log('state '+ this.state)
+    return this.state;
 
 
-    }
-
-
-    // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    //   return this.authService.AuthLogin().then(
-    //       (auth:boolean) => {
-    //         if(auth){
-
-    //           return true;
-    //         }
-    //         else{
-
-    //           this.router.navigate(['authentication/login'])
-    //         }
-    //       }
-    //     );
-    // }
 
   }
 }
