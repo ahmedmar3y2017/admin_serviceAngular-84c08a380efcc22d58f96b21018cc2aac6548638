@@ -30,6 +30,7 @@ import { RegisteruploadComponent } from "./pages/authentication/registration/reg
 import { ProductsComponent } from "./pages/products/products.component";
 import { CustomersComponent } from './pages/customers/customers.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { OffersComponent } from './pages/offers/offers.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     ChangePasswordComponent,
     CustomersComponent,
     PageNotFoundComponent,
+    OffersComponent,
   ],
   imports: [
     BrowserModule,
