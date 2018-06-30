@@ -9,7 +9,7 @@
 
                 <div class="pull-right text-white cont ">
 
-                  <button  class="clickable filter btnn btn btn-sm btn-default"  data-container="body">
+                  <button (click)="openFilter()" class="clickable filter btnn btn btn-sm btn-default"  data-container="body">
 
                     <i class="fa fa-filter"></i>
                     Fillter
@@ -35,46 +35,43 @@
 
       <div class="table-responsive table-hover table-sm table-striped" style="padding: 0;
       ">
-        <table class="table" id="productTable">
-          <thead>
-          <tr class = "text-center">
-            <th>#</th>
-            <th *ngFor = "let head of tableHeader">{{head}}</th>
-            <th ><em class="fa fa-cog"></em></th>
-          </tr>
-          </thead>
-          <tbody>
-            <tr  align="center" (click)="openImage()">
-              <td>1</td>
-              <td>IphoneX</td>
-              <td>50</td>
-              <td>10%</td>
-              <td>19.000</td>
-              <td>100</td>
-              <td>50</td>
-              <td>Apple</td>
-              <td>Mobile-phone</td>
-
-              <td>
-                <ul>
-                  <li>short  description  </li>
-                  <li>short  description </li>
-                  <li>short  description </li>
-                </ul>
-              </td>
-
-
-
-              <!-- last cell -->
-              <td align="center">
-                <a class="btn cus-btn  btn-default"  data-toggle="modal" data-target="#exampleModal" ><em class="fa fa-pencil"></em></a>
-                <a class="btn cus-btn clickable btn-danger"><em class="fa fa-trash"></em></a>
-              </td>
+      <table id="productTable" class="display">
+        <thead>
+            <tr class="text-center">
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 1</th>
+                <th ><em class="fa fa-cog"></em></th>
 
             </tr>
-          </tbody>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                <td>Row 1 Data 1</td>
+                <td>Row 1 Data 2</td>
+                <td>Row 1 Data 1</td>
+                <td>Row 1 Data 2</td>
+                <td>Row 1 Data 1</td>
+                <td>Row 1 Data 2</td>
+                <td>Row 1 Data 1</td>
+                <td>Row 1 Data 2</td>
+                <td>Row 1 Data 1</td>
 
-        </table>
+                <td align="center">
+                    <a class="btn cus-btn  btn-default"  data-toggle="modal" data-target="#exampleModal" ><em class="fa fa-pencil"></em></a>
+                    <a class="btn cus-btn clickable btn-danger"><em class="fa fa-trash"></em></a>
+                  </td>
+              
+            </tr>
+            
+        </tbody>
+    </table>
 
 
         </div>
@@ -84,8 +81,14 @@
   </div>
 </div>
     <!-- Basic table card end -->
+</div>
+    
 
-  <!-- Modal -->
+
+<!-- start model -->
+
+
+<!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

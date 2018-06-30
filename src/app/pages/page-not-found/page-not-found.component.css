@@ -4,8 +4,9 @@ body {
 }
 
 .container {
-  /* margin-top: 17.22vh; */
   text-align: center;
+  height: 100vh;
+
 
 }
 @media (max-width: 320px) {
@@ -17,6 +18,8 @@ body {
 .container > .image-404 {
   width: 318px;
   margin-left: -20px;
+  margin-top: 10.22vh;
+  
 }
 @media (max-width: 320px) {
   .container > .image-404 {

@@ -9,7 +9,7 @@
 
                   <div class="pull-right text-white cont ">
 
-                    <button  class="clickable filter btnn btn btn-sm btn-default"  data-container="body">
+                    <button  (click)="openFilter()" class="clickable filter btnn btn btn-sm btn-default"  data-container="body">
 
                       <i class="fa fa-filter"></i>
                       Fillter
@@ -26,37 +26,45 @@
 
 
       <div class="table-responsive table-hover table-sm table-striped" style="padding:0;">
-        <table class="table" id="OrderTable">
-          <thead>
-          <tr class = "text-center">
-            <th>#</th>
-            <th>#</th>
-            <th>#</th>
-
-            <!-- <th *ngFor = "let head of tableHeader">{{head}}</th> -->
-            <th ><em class="fa fa-cog"></em></th>
-          </tr>
-          </thead>
-          <tbody>
-            <tr  align="center">
-              <td>1</td>
-              <td>IphoneX</td>
-              <td>50</td>
-
-
-
-
-              <!-- last cell -->
-              <td align="center">
-                <a class="btn cus-btn  btn-default"  data-toggle="modal" data-target="#exampleModal" ><em class="fa fa-pencil"></em></a>
-                <a class="btn cus-btn clickable btn-danger"><em class="fa fa-trash"></em></a>
-              </td>
-
-            </tr>
-          </tbody>
-
-        </table>
-
+     
+          <table id="orderTable" class="display">
+              <thead>
+                  <tr class="text-center">
+                      <th>Column 1</th>
+                      <th>Column 2</th>
+                      <th>Column 1</th>
+                      <th>Column 2</th>
+                      <th>Column 1</th>
+                      <th>Column 2</th>
+                      <th>Column 1</th>
+                      <th>Column 2</th>
+                      <th>Column 1</th>
+                      <th ><em class="fa fa-cog"></em></th>
+      
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr class="text-center">
+                      <td>Row 1 Data 1</td>
+                      <td>Row 1 Data 2</td>
+                      <td>Row 1 Data 1</td>
+                      <td>Row 1 Data 2</td>
+                      <td>Row 1 Data 1</td>
+                      <td>Row 1 Data 2</td>
+                      <td>Row 1 Data 1</td>
+                      <td>Row 1 Data 2</td>
+                      <td>Row 1 Data 1</td>
+      
+                      <td align="center">
+                          <a class="btn cus-btn  btn-default"  data-toggle="modal" data-target="#exampleModal" ><em class="fa fa-pencil"></em></a>
+                          <a class="btn cus-btn clickable btn-danger"><em class="fa fa-trash"></em></a>
+                        </td>
+                    
+                  </tr>
+                  
+              </tbody>
+          </table>
+      
 
         </div>
 

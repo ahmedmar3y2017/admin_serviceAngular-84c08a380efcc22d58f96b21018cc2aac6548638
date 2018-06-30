@@ -7,6 +7,7 @@ import {Routes} from '@angular/router';
 import {AdminComponent} from './layout/admin/admin.component';
 import {AuthComponent} from './layout/auth/auth.component';
 import { ChangePasswordComponent } from './pages/user/change-password/change-password.component';
+import { OffersComponent } from './pages/offers/offers.component';
 
 export const AppRoutes: Routes = [
 
@@ -36,26 +37,33 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: '',
+        canActivate:[AuthGuard],
+        
         redirectTo: 'dashboard',
         pathMatch: 'full'
       }, {
         path: 'dashboard',
-        canActivate:[AuthGuard],
+        // canActivate:[AuthGuard],
         loadChildren: './pages/dashboard/dashboard-default/dashboard-default.module#DashboardDefaultModule'
       }, {
         path: 'basic',
+        // canActivate:[AuthGuard],
         loadChildren: './pages/ui-elements/basic/basic.module#BasicModule'
       }, {
         path: 'notifications',
+        // canActivate:[AuthGuard],
          loadChildren: './pages/ui-elements/advance/notifications/notifications.module#NotificationsModule'
       }, {
         path: 'bootstrap-table',
+        // canActivate:[AuthGuard],
         loadChildren: './pages/ui-elements/tables/bootstrap-table/basic-bootstrap/basic-bootstrap.module#BasicBootstrapModule',
       }, {
         path: 'map',
+        // canActivate:[AuthGuard],
         loadChildren: './pages/map/google-map/google-map.module#GoogleMapModule',
       }, {
         path: 'user',
+        // canActivate:[AuthGuard],
         loadChildren: './pages/user/profile/profile.module#ProfileModule'
       },
       {
@@ -82,7 +90,14 @@ export const AppRoutes: Routes = [
         component: CustomersComponent,
 
       } ,
-      { path: '**', component: PageNotFoundComponent }
+      {
+        path: 'offers',
+        // canActivate:[AuthGuard],
+        component: OffersComponent,
+
+      } ,
     ]
-  }
+  },
+  { path: '**', component: PageNotFoundComponent }
+  
 ];

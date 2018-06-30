@@ -67,6 +67,14 @@ const MENUITEMS = [
       },
 
       {
+        state: 'offers',
+        short_label: 'O',
+        name: 'Offers',
+        type: 'link',
+        icon: 'ti-id-badge'
+      },
+
+      {
         state: 'reports',
         short_label: 'R',
         name: 'Reports',

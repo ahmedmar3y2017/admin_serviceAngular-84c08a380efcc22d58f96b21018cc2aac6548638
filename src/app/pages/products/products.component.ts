@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
 
   product_form:FormGroup;
   constructor(fb:FormBuilder) {
-    this.tableHeader = ['name','Quantity','discount','price','unit-Stock','Unit-Weight','brand','Categoary' ,  'Description'];
+    this.tableHeader = ['name','Quantity','discount','price','unit-Stock','Unit-Weight','brand','Categoary' ,  'Description' ];
 
 
     this.product_form = fb.group({
@@ -58,34 +58,41 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // to open filter input
-    $(function(){
-      $.noConflict();
-
+    $(document).ready( function () {
       $('#productTable').DataTable();
 
+    } );
 
 
-      $( ".card").on('click', '.card-header .filter', function(e){
-        var $this = $(this),
-        $panel = $('.dataTables_filter') ,
-        $entry =  $('.dataTables_length');
-
-        setTimeout(() => {
-          $panel.toggleClass('inline', 10000);
-          $entry.toggleClass('inline' , 10000);
-            }, 100);
 
 
-        if($panel.css('display') != 'none') {
-          $('.dataTables_filter input').focus();
-        }
-    });
-
-  })
+  //
+  //
+  //
+  //
+  //     $( ".card").on('click', '.card-header .filter', function(e){
+  //       var $this = $(this),
+  //
+  //
+  //       if($panel.css('display') != 'none') {
+  //         $('.dataTables_filter input').focus();
+  //       }
+  //   });
+  //
+  // })
 }
 
+openFilter(){
+
+
+          var $panel = $('.dataTables_filter') ,
+               $entry =  $('.dataTables_length');
+
+            $panel.slideToggle(30);
+            $entry.slideToggle(30);
+
+
+  }
 
 openImage(){
   console.log("Image Url");

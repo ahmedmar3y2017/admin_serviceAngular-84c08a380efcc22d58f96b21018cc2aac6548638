@@ -28,32 +28,23 @@ export class CustomersComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(document).ready( function () {
+      $('#customerTable').DataTable();
 
-    // to open filter input
-      $(function(){
-      $.noConflict();
+    } );
 
-      $('#CustomerTable').DataTable();
+}
 
-
-
-      $( ".card").on('click', '.card-header .filter', function(e){
-        var $this = $(this),
-        $panel = $('.dataTables_filter') ,
-        $entry =  $('.dataTables_length');
-
-        setTimeout(() => {
-          $panel.toggleClass('inline', 10000);
-          $entry.toggleClass('inline' , 10000);
-            }, 100);
+openFilter(){
 
 
-        if($panel.css('display') != 'none') {
-          $('.dataTables_filter input').focus();
-        }
-    });
+  var $panel = $('.dataTables_filter') ,
+       $entry =  $('.dataTables_length');
 
-  })
+    $panel.slideToggle(30);
+    $entry.slideToggle(30);
+
+
 }
 
 }
